@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VIP Upgrade Section Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 4.5 CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/[email protected]/dist/css/bootstrap.min.css">
+  <!-- Font Awesome CDN for Play Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(120deg, #f7fafd 0%, #fff 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .welcome-video-card {
+      max-width: 900px;
+      margin: 36px auto 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(60,60,120,0.07);
+      background: none;
+    }
+    .welcome-video-gradient {
+      background: linear-gradient(120deg, #4f8cff 0%, #7c4dff 100%);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      padding: 0 30px;
+    }
+    .play-btn {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.18);
+      transition: background 0.18s, box-shadow 0.18s;
+      box-shadow: 0 2px 16px #4f8cff33;
+    }
+    .play-btn:hover {
+      background: rgba(255,255,255,0.32);
+      box-shadow: 0 4px 24px #7c4dff44;
+    }
+    .play-btn i {
+      color: #fff;
+      font-size: 2.3rem;
+      margin-left: 6px;
+    }
+    .welcome-title {
+      color: #fff;
+      font-size: 1.18rem;
+      font-weight: 600;
+      margin-bottom: 7px;
+      letter-spacing: 0.2px;
+    }
+    .welcome-desc {
+      color: #f3f3ff;
+      font-size: 1.01rem;
+      opacity: 0.97;
+      margin-bottom: 0;
+    }
+    .welcome-bottom {
+      background: #f8fafb;
+      padding: 18px 32px 13px 32px;
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
+      border-top: 1px solid #f0f0ff;
+      text-align: center;
+    }
+    .welcome-bottom-title {
+      font-weight: 600;
+      color: #232434;
+      font-size: 1.05rem;
+      margin-bottom: 2px;
+    }
+    .welcome-bottom-desc {
+      color: #6c6c8a;
+      font-size: 0.98rem;
+      margin-bottom: 0;
+    }
+
+    /* VIP Offer Card */
+    .vip-offer-section {
+      max-width: 900px;
+      margin: 38px auto 0 auto;
+      background: linear-gradient(120deg, #f5f3ff 0%, #f9f8ff 100%);
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(120,90,180,0.08);
+      padding: 36px 28px 36px 28px;
+      text-align: center;
+    }
+    .vip-badge {
+      display: inline-block;
+      background: #ede7ff;
+      color: #7c4dff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border-radius: 18px;
+      padding: 4px 18px 3px 18px;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    .vip-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #232434;
+      margin-bottom: 8px;
+      letter-spacing: 0.1px;
+    }
+    .vip-desc {
+      color: #6c6c8a;
+      font-size: 1.04rem;
+      margin-bottom: 30px;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.98;
+    }
+    .vip-offer-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: stretch;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px #7c4dff0d;
+      padding: 30px 24px 22px 24px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+      gap: 16px;
+    }
+    .vip-features-list {
+      flex: 1 1 270px;
+      margin-bottom: 0;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 13px;
+    }
+    .vip-features-list li {
+      color: #7c4dff;
+      font-size: 1.04rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .vip-features-list li:before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #b39ddb;
+      border-radius: 50%;
+      margin-right: 10px;
+      margin-left: 2px;
+    }
+    .vip-price-col {
+      flex: 0 0 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-left: 1px solid #f0e7ff;
+      padding-left: 28px;
+    }
+    .vip-price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #7c4dff;
+      margin-bottom: 0;
+      line-height: 1;
+    }
+    .vip-price-old {
+      font-size: 1.1rem;
+      color: #bdbdbd;
+      text-decoration: line-through;
+      font-weight: 500;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .vip-price-save {
+      color: #43b581;
+      font-size: 1.01rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      margin-top: 3px;
+    }
+    .vip-upgrade-btn {
+      width: 100%;
+      background: linear-gradient(90deg, #7c4dff 0%, #4f8cff 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.13rem;
+      border: none;
+      padding: 13px 0;
+      border-radius: 100px;
+      margin-bottom: 10px;
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 2px 8px #7c4dff22;
+      transition: background 0.18s, color 0.18s;
+    }
+    .vip-upgrade-btn:hover, .vip-upgrade-btn:focus {
+      background: linear-gradient(90deg, #4f8cff 0%, #7c4dff 100%);
+      color: #fff;
+      outline: none;
+    }
+    .vip-guarantee {
+      font-size: 0.98rem;
+      color: #b39ddb;
+      margin-bottom: 0;
+      margin-top: 2px;
+    }
+    @media (max-width: 900px) {
+      .welcome-video-card, .vip-offer-section {
+        max-width: 98vw;
+      }
+      .vip-offer-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px 8px 14px 8px;
+      }
+      .vip-price-col {
+        border-left: none;
+        border-top: 1px solid #f0e7ff;
+        padding-left: 0;
+        padding-top: 18px;
+        margin-top: 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      .welcome-video-gradient {
+        min-height: 180px;
+        padding: 0 8vw;
+      }
+      .welcome-video-card {
+        margin-top: 14px;
+      }
+      .vip-offer-section {
+        padding: 18px 2vw 18px 2vw;
+      }
+      .vip-title {
+        font-size: 1.13rem;
+      }
+      .vip-offer-card {
+        padding: 10px 3vw 8px 3vw;
+      }
+      .vip-price {
+        font-size: 1.39rem;
+      }
+    }
+
+      .confirmation-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 12px 0 12px;
+      text-align: center;
+    }
+    .confirmation-icon {
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 18px auto;
+      box-shadow: 0 2px 16px #19ff5933;
+      border: 4px solid #e7fbe7;
+    }
+    .confirmation-icon .fa-circle-check {
+      color: #27c84a;
+      font-size: 2.8rem;
+    }
+    .confirmation-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #232434;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    .confirmation-title .fa-party-horn, .confirmation-title .fa-party-popper {
+      color: #ffb300;
+      font-size: 2.1rem;
+      margin-left: 2px;
+    }
+    .confirmation-subtitle {
+      font-size: 1.18rem;
+      color: #232434;
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+    .confirmation-subtitle .challenge-link {
+      color: #2a6cff;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .confirmation-alert {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e7fbe7;
+      color: #217a36;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      max-width: 520px;
+      margin: 0 auto 36px auto;
+      box-shadow: 0 1px 8px #27c84a11;
+      gap: 10px;
+    }
+    .confirmation-alert .fa-check-square {
+      color: #27c84a;
+      font-size: 1.18rem;
+    }
+    .what-next-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #232434;
+      margin-top: 26px;
+      margin-bottom: 7px;
+      letter-spacing: 0.1px;
+    }
+    .what-next-desc {
+      color: #6c6c8a;
+      font-size: 1.08rem;
+      margin-bottom: 30px;
+      opacity: 0.97;
+    }
+    /* Steps Cards */
+    .steps-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .step-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px #2a6cff0d;
+      padding: 32px 20px 22px 20px;
+      min-width: 270px;
+      max-width: 340px;
+      flex: 1 1 280px;
+      text-align: center;
+      margin-bottom: 18px;
+      border: 1px solid #f0f4fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.18s;
+    }
+    .step-card:hover {
+      box-shadow: 0 8px 36px #2a6cff22;
+    }
+    .step-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #e7f0ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .step-icon .fa-envelope {
+      color: #2a6cff;
+      font-size: 2rem;
+    }
+    .step-icon .fa-calendar-days {
+      color: #2a6cff;
+      font-size: 2rem;
+    }
+    .step-icon .fa-play-circle {
+      color: #2a6cff;
+      font-size: 2rem;
+    }
+    .step-title {
+      font-size: 1.13rem;
+      font-weight: 700;
+      color: #232434;
+      margin-bottom: 7px;
+    }
+    .step-desc {
+      color: #6c6c8a;
+      font-size: 1.01rem;
+      margin-bottom: 16px;
+      min-height: 48px;
+    }
+    .step-link {
+      background: #e7f0ff;
+      color: #2a6cff;
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-size: 1.01rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.18s, color 0.18s;
+      display: inline-block;
+      margin-top: auto;
+    }
+    .step-link:hover {
+      background: #2a6cff;
+      color: #fff;
+      text-decoration: none;
+    }
+    @media (max-width: 1000px) {
+      .steps-row {
+        gap: 12px;
+      }
+      .step-card {
+        min-width: 220px;
+        padding: 18px 6px 14px 6px;
+      }
+    }
+    @media (max-width: 700px) {
+      .confirmation-title {
+        font-size: 1.5rem;
+      }
+      .confirmation-container {
+        padding-top: 24px;
+      }
+      .steps-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .step-card {
+        width: 100%;
+        max-width: 98vw;
+        margin-bottom: 18px;
+      }
+    }
+    .refer-card {
+      max-width: 900px;
+      margin: 48px auto 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      border: 2px dashed #e5e5e5;
+      box-shadow: 0 2px 16px #2a6cff0c;
+      padding: 38px 32px 32px 32px;
+      text-align: center;
+    }
+    .refer-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #232434;
+      margin-bottom: 7px;
+      letter-spacing: 0.1px;
+    }
+    .refer-title .fa-gift {
+      color: #ffb300;
+      margin-left: 7px;
+      font-size: 1.2em;
+      vertical-align: -3px;
+    }
+    .refer-desc {
+      color: #6c6c8a;
+      font-size: 1.06rem;
+      margin-bottom: 22px;
+      opacity: 0.97;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .refer-highlight {
+      background: #fff8e1;
+      color: #b8860b;
+      border: 1px solid #ffe082;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      padding: 12px 18px;
+      display: inline-block;
+      margin-bottom: 24px;
+      margin-top: 2px;
+    }
+    .refer-highlight .fa-trophy {
+      color: #ffb300;
+      margin-right: 7px;
+      font-size: 1.12em;
+      vertical-align: -2px;
+    }
+    .refer-share-label {
+      margin-top: 18px;
+      margin-bottom: 12px;
+      color: #232434;
+      font-size: 1.04rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    .refer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .refer-socials .btn {
+      min-width: 120px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 8px;
+      color: #fff;
+      box-shadow: 0 1px 6px #2a6cff14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 6px;
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      padding: 12px 24px;
+      border: none;
+      outline: none;
+    }
+    .refer-socials .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+    .refer-socials .btn:active {
+      transform: translateY(0);
+    }
+    .refer-socials .btn-facebook {
+      background: #1877f3;
+    }
+    .refer-socials .btn-facebook:hover {
+      background: #1456b8;
+    }
+    .refer-socials .btn-twitter {
+      background: #1da1f2;
+    }
+    .refer-socials .btn-twitter:hover {
+      background: #147bb8;
+    }
+    .refer-socials .btn-linkedin {
+      background: #0077b5;
+    }
+    .refer-socials .btn-linkedin:hover {
+      background: #005983;
+    }
+    .refer-socials .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+    .refer-socials .btn-whatsapp:hover {
+      background: #1aa94c;
+      color: #fff;
+    }
+    /* Button underline/dag effect */
+    .refer-socials .btn::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 20%;
+      right: 20%;
+      height: 3px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      opacity: 0;
+    }
+    .refer-socials .btn:hover::after {
+      opacity: 1;
+      bottom: -7px;
+    }
+    .refer-copy-row {
+      margin-top: 8px;
+      margin-bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .refer-copy-btn {
+      border: 1px solid #e0e0e0;
+      background: #fff;
+      color: #232434;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      padding: 8px 22px;
+      transition: background 0.18s, color 0.18s, border 0.18s;
+      box-shadow: 0 1px 6px #2a6cff0a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      margin: 0 auto;
+      margin-bottom: 0;
+    }
+    .refer-copy-btn.copied {
+      background: #e7fbe7;
+      color: #27c84a;
+      border: 1px solid #b2f3c4;
+    }
+    .refer-copy-btn .fa-clipboard {
+      color: #bdbdbd;
+      font-size: 1.11em;
+      vertical-align: -2px;
+    }
+    .refer-copy-btn.copied .fa-clipboard {
+      color: #27c84a;
+    }
+    @media (max-width: 700px) {
+      .refer-card {
+        padding: 18px 4vw 18px 4vw;
+      }
+      .refer-socials {
+        gap: 8px;
+      }
+      .refer-copy-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+      <div class="confirmation-container">
+    <!-- Success Icon -->
+    <div class="confirmation-icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <!-- Title -->
+    <div class="confirmation-title">
+      You're In! 🎉
+      <span>
+        <i class="fa-solid fa-party-horn"></i>
+        <!-- If party-horn not available, use fa-party-popper -->
+      </span>
+    </div>
+    <!-- Subtitle -->
+    <div class="confirmation-subtitle">
+      Welcome to the <span class="challenge-link">FREE 5-Day Challenge</span> that will transform your future!
+    </div>
+    <!-- Alert -->
+    <div class="confirmation-alert">
+      <i class="fa-solid fa-check-square"></i>
+      Your spot is reserved and confirmation email is on its way!
+    </div>
+    <!-- What Happens Next -->
+    <div class="what-next-title">What Happens Next?</div>
+    <div class="what-next-desc">
+      Follow these simple steps to get the most out of your challenge experience
+    </div>
+    <!-- Steps -->
+    <div class="steps-row">
+      <!-- Step 1 -->
+      <div class="step-card">
+        <div class="step-icon">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+        <div class="step-title">Step 1: Check Your Email</div>
+        <div class="step-desc">
+          Look for your welcome email with all the challenge details and Day 1 materials.
+        </div>
+        <a href="#" class="step-link">Check your inbox (and spam folder!)</a>
+      </div>
+      <!-- Step 2 -->
+      <div class="step-card">
+        <div class="step-icon">
+          <i class="fa-solid fa-calendar-days"></i>
+        </div>
+        <div class="step-title">Step 2: Mark Your Calendar</div>
+        <div class="step-desc">
+          Block out time each day for the next 5 days to participate in the challenge.
+        </div>
+        <a href="#" class="step-link">Set daily reminders now</a>
+      </div>
+      <!-- Step 3 -->
+      <div class="step-card">
+        <div class="step-icon">
+          <i class="fa-solid fa-play-circle"></i>
+        </div>
+        <div class="step-title">Step 3: Get Ready to Transform</div>
+        <div class="step-desc">
+          Prepare to unlock your potential and create the future you've always dreamed of.
+        </div>
+        <a href="#" class="step-link">Challenge starts tomorrow!</a>
+      </div>
+    </div>
+  </div>
+  <!-- Welcome Video Section -->
+  <div class="welcome-video-card">
+    <div class="welcome-video-gradient">
+      <div class="play-btn">
+        <i class="fas fa-play"></i>
+      </div>
+      <div class="welcome-title">Personal Welcome Message</div>
+      <div class="welcome-desc">
+        Watch this special welcome video to learn exactly what to expect from your 5-day transformation journey.
+      </div>
+    </div>
+    <div class="welcome-bottom">
+      <div class="welcome-bottom-title">Ready to Start Your Transformation?</div>
+      <div class="welcome-bottom-desc">
+        This 3-minute video will show you exactly how to maximize your results from the challenge.
+      </div>
+    </div>
+  </div>
+  <!-- VIP Offer Section -->
+  <div class="vip-offer-section">
+    <div class="vip-badge">LIMITED TIME OFFER</div>
+    <div class="vip-title">Want to Fast-Track Your Success?</div>
+    <div class="vip-desc">
+      Upgrade to VIP and get personalized guidance, exclusive content, and direct access to our expert mentors.
+    </div>
+    <div class="vip-offer-card">
+      <ul class="vip-features-list">
+        <li>Private VIP community access</li>
+        <li>Weekly live coaching calls</li>
+        <li>Exclusive bonus materials</li>
+        <li>Direct access to mentors</li>
+        <li>Personalized action plans</li>
+        <li>Lifetime access to recordings</li>
+      </ul>
+      <div class="vip-price-col">
+        <div>
+          <span class="vip-price">$97</span>
+          <span class="vip-price-old">Usually $297</span>
+        </div>
+        <div class="vip-price-save">Save $200 Today!</div>
+        <button class="vip-upgrade-btn">Upgrade to VIP Now</button>
+        <div class="vip-guarantee">30-day money-back guarantee</div>
+      </div>
+    </div>
+  </div>
+  <div class="refer-card">
+    <div class="refer-title">
+      Share with Friends & Earn Rewards!
+      <i class="fa-solid fa-gift"></i>
+    </div>
+    <div class="refer-desc">
+      Invite your friends to join the challenge too! For every friend who registers, you'll both get exclusive bonus materials and a chance to win amazing prizes.
+    </div>
+    <div class="refer-highlight">
+      <i class="fa-solid fa-trophy"></i>
+      Refer 3 friends and unlock our exclusive success toolkit!
+    </div>
+    <div class="refer-share-label">Share on your favorite platform:</div>
+    <div class="refer-socials">
+      <a class="btn btn-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yourchallenge.com/referral">
+        <i class="fab fa-facebook-f"></i> Facebook
+      </a>
+      <a class="btn btn-twitter" target="_blank" href="https://twitter.com/intent/tweet?url=https://yourchallenge.com/referral&text=Join%20me%20in%20this%20awesome%20challenge!">
+        <i class="fab fa-twitter"></i> Twitter
+      </a>
+      <a class="btn btn-linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://yourchallenge.com/referral">
+        <i class="fab fa-linkedin-in"></i> LinkedIn
+      </a>
+      <a class="btn btn-whatsapp" target="_blank" href="https://api.whatsapp.com/send?text=Join%20me%20in%20this%20awesome%20challenge!%20https://yourchallenge.com/referral">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+    <div class="refer-copy-row">
+      <button class="refer-copy-btn" id="copyReferralBtn">
+        <i class="fa-regular fa-clipboard"></i>
+        Copy Referral Link
+      </button>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div class="container" style="max-width:900px;margin:40px auto 0 auto;text-align:center;">
+    <hr style="margin:40px 0 18px 0; border-top:1px solid #f0f0f0;">
+    <div style="color:#6c6c8a; font-size:1.01rem;">
+      Questions? Email us at <a href="mailto:support@challenge.com" style="color:#2a6cff;text-decoration:underline;">support@challenge.com</a>
+    </div>
+    <div style="color:#bdbdbd; font-size:0.97rem; margin-top:6px;">
+      © 2024 Your Challenge Company. All rights reserved.
+    </div>
+  </div>
+
+  <!-- Copy to Clipboard Script -->
+  <script>
+    const referralLink = "https://yourchallenge.com/referral";
+    const copyBtn = document.getElementById('copyReferralBtn');
+    copyBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText(referralLink).then(function() {
+        copyBtn.classList.add('copied');
+        copyBtn.innerHTML = '<i class="fa-regular fa-clipboard"></i> Copied!';
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = '<i class="fa-regular fa-clipboard"></i> Copy Referral Link';
+        }, 1800);
+      });
+    });
+  </script>
+  
+  <!--blcok view source code-->
+
+
+</body>
+</html>
