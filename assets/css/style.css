@@ -1,0 +1,324 @@
+/*
+ * style.css
+ * Purpose: This file contains all the custom CSS rules for styling the webpage.
+ * It defines the visual appearance, layout, and responsiveness of the HTML elements.
+ */
+
+/* General body styling */
+body {
+  font-family: 'roboto'; /* Using the Roboto font imported in HTML */
+  margin: 0;
+  padding: 0;
+  background: #f0f2f5; /* Light gray background */
+}
+
+/* Hero Section Styles: Top banner with gradient background */
+.hero-section {
+  background: linear-gradient(to right, #0f172a, #1e3a8a); /* Dark blue gradient */
+  color: white;
+  padding: 80px 0;
+  min-height: 100vh; /* Full viewport height */
+}
+
+.hero-title {
+  font-weight: 700; /* Bold font for the main title */
+  font-size: 4rem; /* Large font size */
+}
+.hero-badge {
+  background: #FFF3CD; /* Light yellow background */
+  color: #856404; /* Dark yellow text */
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 6px 18px;
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.highlight {
+  color: #60a5fa; /* Light blue color for highlighted text */
+}
+
+/* Form Card Styles: Styling for the signup form container */
+.form-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+.form-card input {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.form-card button {
+  font-weight: 700;
+  background-color: #2563eb; /* Blue button color */
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.form-note {
+  font-size: 0.875rem;
+  margin-top: 10px;
+  color: #6b7280; /* Gray text for notes */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem; /* Smaller title on mobile */
+  }
+
+  .form-card {
+    margin-top: 30px; /* Add margin on top for better spacing */
+  }
+}
+
+/* Countdown Section Styles: Red banner with timer boxes */
+.countdown-container {
+  margin: 0 auto;
+  padding: 60px 10px 40px 10px;
+  text-align: center;
+  background-color: #d32f2f; /* Red background */
+}
+.countdown-title {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.countdown-title img {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+.timer-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 18px;
+  flex-wrap: wrap; /* Allow boxes to wrap on smaller screens */
+}
+.timer-box {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  width: 160px;
+  padding: 28px 0 18px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timer-value {
+  color: #d32f2f; /* Red color for timer numbers */
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.timer-label {
+  color: #d32f2f; /* Red color for timer labels */
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.countdown-footer {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments for smaller timer boxes */
+@media (max-width: 700px) {
+  .timer-row {
+    gap: 10px;
+  }
+  .timer-box {
+    width: 90px;
+    padding: 18px 0 10px 0;
+  }
+  .timer-value {
+    font-size: 1.5rem;
+  }
+  .timer-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Daily Challenge Card Styles */
+.day-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 25px;
+  margin-bottom: 20px;
+}
+.day-badge {
+  background-color: #0052cc; /* Blue badge for days */
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.section-subtitle {
+  color: #6c757d;
+  margin-bottom: 40px;
+}
+
+/* VIP Offer Section Styles */
+.offer-badge {
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  border-radius: 999px; /* Pill shape */
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+}
+.card-style {
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+}
+.price-section del {
+  color: gray; /* Strikethrough for old price */
+}
+.price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0047b3; /* Blue color for current price */
+}
+.btn-gold {
+  background-color: #ffba08; /* Gold button color */
+  color: black;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.check-list li::before {
+  content: '✅'; /* Green checkmark before list items */
+  margin-right: 10px;
+}
+.footer-warning {
+  color: yellow;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+span.text-success {
+  margin-right: .5rem; /* Small margin for check icons */
+}
+
+/* Testimonial Card Styles */
+.testimonial-card {
+  background: linear-gradient(to bottom right, #ebf0fc, #ffffff); /* Light gradient background */
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.quote-icon {
+  font-size: 24px;
+  color: #4f46e5; /* Purple for quote icon */
+}
+.badge-custom {
+  background-color: #e6fef0; /* Light green badge */
+  color: #1a7f37; /* Dark green text */
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 999px; /* Pill shape */
+  font-size: 14px;
+  display: inline-block;
+}
+.cta-button {
+  background-color: #e0e7ff; /* Light blue CTA button */
+  border: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e40af; /* Dark blue text */
+  transition: background-color 0.2s;
+}
+.cta-button:hover {
+  background-color: #c7d2fe; /* Lighter blue on hover */
+}
+.star {
+  color: #fbbf24; /* Gold star color */
+  margin-right: 8px;
+}
+
+/* FAQ Section Styles */
+.faq-header {
+  font-weight: 700;
+  font-size: 2rem;
+}
+.faq-subheader {
+  color: #6b7280;
+}
+.faq-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  padding: 30px;
+  max-width: 760px;
+  margin: auto;
+}
+.accordion-button {
+  border-radius: 12px !important;
+  background-color: #f9fafb;
+  font-weight: 500;
+}
+.accordion-button:hover {
+  color: rgb(62, 62, 224);
+  text-decoration-line: underline;
+}
+.accordion-item {
+  border: 1px solid rgb(204, 218, 219) !important;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.accordion-body {
+  font-size: 15px;
+  color: #4b5563;
+  text-align: left;
+}
+.contact-button {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+}
+.contact-button:hover {
+  background-color: #1e40af;
+}
+/* Ensure accordion button focus state doesn't add extra box-shadow */
+.accordion-button:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: unset; /* Revert background on focus */
+}
+
